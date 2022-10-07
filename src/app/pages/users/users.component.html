@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Usuarios</h4>
+                        <p class="card-category"> Aquí estan todos los usuarios registrados en Tinpy</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Correo
+                                    </th>
+                                    <th>
+                                        Rol
+                                    </th>
+                                    <th>
+                                        Verificado
+                                    </th>
+                                    <th>
+                                        Baneado
+                                    </th>
+                                    <th>
+                                        Creado
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="users$ | async as users">
+                                    <tr *ngFor="let user of users">
+                                        <td>{{user.correo}}</td>
+                                        <td>
+                                            <button 
+                                                type="button" 
+                                                type="submit" 
+                                                class="btn"
+                                                [disabled]="user.uid === myUser.uid"
+                                                [class.btn-success]="user.rol.nombre == 'admin'" 
+                                                [class.btn-info]="user.rol.nombre != 'admin'" 
+                                                (click)="usersService.changeUserAdmin(user.uid)"
+                                                >
+                                                <span *ngIf="user.rol.nombre == 'admin'">Admin</span>
+                                                <span *ngIf="user.rol.nombre != 'admin'">User</span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button 
+                                                type="button" 
+                                                type="submit" 
+                                                class="btn"
+                                                [disabled]="user.uid === myUser.uid"
+                                                [class.btn-success]="user.verify" 
+                                                [class.btn-danger]="!user.verify" 
+                                                (click)="usersService.changeUserVerify(user.uid)"
+                                                >
+                                                <i *ngIf="user.verify" class="material-icons">done</i>
+                                                <i *ngIf="!user.verify" class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button 
+                                            type="button" 
+                                            type="submit" 
+                                            class="btn"
+                                            [disabled]="user.uid === myUser.uid"
+                                            [class.btn-success]="!user.estado" 
+                                            [class.btn-danger]="user.estado" 
+                                            (click)="usersService.changeUserBaned(user.uid)"
+                                            >
+                                            <i *ngIf="!user.estado" class="material-icons">done</i>
+                                            <i *ngIf="user.estado" class="material-icons">close</i>
+                                        </button>
+                                        </td>
+                                        <td>{{user.createdAt | date: 'd/M/YYYY' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

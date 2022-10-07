@@ -1,0 +1,32 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center center">
+            <div class="col-11 col-md-6 col-lg-4 col-xl-3">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="https://stickerly.pstatic.net/sticker_pack/YIkMXfxwRMMvVMIoXINUA/ER4FTC/4/a8ae3d74-459d-4abd-96ff-3e82629daa08.png" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <form class="row justify-content-center" [formGroup]="authForm">
+                          <div class="col-8">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Correo" type="text" formControlName="correo">
+                            </mat-form-field>
+                          </div>
+                          <div class="col-8">
+                            <mat-form-field class="example-full-width">
+                              <input matInput placeholder="Password" type="password" formControlName="password">
+                            </mat-form-field>
+                          </div>
+                        </form>
+                        <button class="btn btn-danger btn-round" (click)="login()">Ingresar</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

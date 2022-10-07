@@ -1,0 +1,75 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Tiendas</h4>
+                        <p class="card-category"> Aquí estan todas las tiendas registrados en Tinpy :D</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        Nombre
+                                    </th>
+                                    <th>
+                                        Correo
+                                    </th>
+                                    <th>
+                                        Telefono
+                                    </th>
+                                    <th>
+                                        Estado
+                                    </th>
+                                    <th>
+                                        Verificado
+                                    </th>
+                                    <th>
+                                        Creacion
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="shops$ | async as shops">
+                                    <tr *ngFor="let shop of shops">
+                                        <td>{{shop.nombre}}</td>
+                                        <td>{{shop.correo}}</td>
+                                        <td>
+                                            {{shop.telefono}}
+                                        </td>
+                                        <td>
+                                            <button 
+                                                type="button" 
+                                                type="submit" 
+                                                class="btn"
+                                                [class.btn-success]="shop.estado" 
+                                                [class.btn-danger]="!shop.estado" 
+                                                (click)="shopService.changeShopBaned(shop._id)"
+                                                >
+                                                <i *ngIf="shop.estado" class="material-icons">done</i>
+                                                <i *ngIf="!shop.estado" class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                        <td><button 
+                                            type="button" 
+                                            type="submit" 
+                                            class="btn"
+                                            [class.btn-success]="shop.verificado" 
+                                            [class.btn-danger]="!shop.verificado" 
+                                            (click)="shopService.changeShopVerify(shop._id)"
+                                            >
+                                            <i *ngIf="shop.verificado" class="material-icons">done</i>
+                                            <i *ngIf="!shop.verificado" class="material-icons">close</i>
+                                        </button></td>
+                                        <td>{{shop.createdAt | date: 'd/M/YYYY'}}</td>
+                                    
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </div>
