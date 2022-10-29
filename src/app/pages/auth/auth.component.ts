@@ -32,7 +32,7 @@ export class AuthComponent implements OnInit {
       next:(resp)=>{
         if(resp.ok && resp.usuario.rol === '623c7e28d6f6a64fb09dee0c'){
           localStorage.setItem('token',resp.token);
-          this.router.navigateByUrl('/dashboard')
+          this.router.navigateByUrl('/metrics')
         }else{
           this.alertService.showNotification('top','center','danger','error','Esta cuenta no es administrador')
         }
